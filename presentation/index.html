@@ -42,10 +42,115 @@
             </div>
           </div>
         </section>
-        <section class="l-title-content">
+        <!-- <section class="l-title-content">
           <h2>What is Docker?</h2>
           <div class="content">
-            <p>Docker is a contain</p>
+            <p>
+              Docker is a open-source platform that enables developers to build,
+              deploy, and manage applications in <strong> containers </strong>.
+            </p>
+
+            <p>
+              Docker uses OS-level virtualization to deliver software in
+              containers.
+              This means that each container shares the host OS
+              kernel, but runs in its own isolated user space. 
+            </p>
+          </div>
+        </section> -->
+        <section class="l-title-content" data-auto-animate>
+          <h2>How do Containers work?</h2>
+          <div class="content">
+            <p>
+              Containers are an abstraction over Linux kernel features &dash;
+              <strong>namespaces</strong> and <strong>cgroups</strong>.
+            </p>
+
+            <div class="fragment">
+              <p>
+                <strong>Namespaces</strong> provide isolation for processes,
+                ensuring that they cannot see or interact with processes in
+                other containers or on the host system.
+              </p>
+            </div>
+
+            <div class="fragment">
+              <p>
+                <strong>Cgroups</strong> provide resource management for
+                processes, which can be used to limit and monitor the resources
+                that a group of processes can use.
+              </p>
+            </div>
+
+            <div class="fragment">
+              <p>
+                At the most basic level, a container is just a group of
+                processes running on the host system, with their own isolated
+                view of the system, and a set of resource limits.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="l-title-content" data-auto-animate>
+          <h2>How do Containers work?</h2>
+          <div class="content">
+            <img
+              src="images/container-diagram.png"
+              alt="Container Diagram"
+              style="height: 400px"
+            />
+          </div>
+        </section>
+        <section class="l-title-content">
+          <h2>Namespaces</h2>
+          <div class="content">
+            <p>
+              Namespaces are a Linux kernel feature that provides an abstraction
+              over a global resource. A namespace contains a group of processes
+              that (seem to) share an isolated instance of a global resource.
+            </p>
+            <div class="fragment">
+              <p>
+                Linux provides different kinds of namespaces for different
+                resources. Some of them are:
+              </p>
+              <ul>
+                <li>
+                  <strong>Mount</strong> namespace: provides isolation for the
+                  filesystem, allowing each container to have its own view of
+                  the filesystem.
+                </li>
+                <li>
+                  <strong>PID</strong> namespace: abstracts the process ID
+                  space.
+                </li>
+                <li>
+                  <strong>Network</strong> namespace: provides isolation for
+                  network resources (devices, IP addresses, routing table,
+                  firewall, etc.).
+                </li>
+                <li>
+                  <strong>User</strong> namespace: isolates user and process
+                  group IDs.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="l-title-content">
+          <h2>Control Groups (cgroups)</h2>
+          <div class="content">
+            <p>
+              Control groups (cgroups) are a Linux kernel feature that allows
+              you to limit and monitor the resources that a group of processes
+              can use.
+            </p>
+            <div class="fragment">
+              <p>
+                Cgroups can be used to limit CPU, memory, disk I/O, and network
+                bandwidth for a group of processes.
+              </p>
+            </div>
           </div>
         </section>
       </div>

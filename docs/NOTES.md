@@ -27,13 +27,9 @@ Resource management ensures that the application does not consume more resources
 
 Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels. Because all of the containers share the services of a single operating system kernel, they use fewer resources than VMs.
 
-## What is Docker?
-
-Docker is an open-source platform that allows developers to _build_, _package_, and _run_ applications inside containers.
-
-Docker is a higher level ecosystem which has tools to package and distribute containerised applications.
-
 ## How Containers Work
+
+Like everything else in software, a container is just an abstraction over a set of features provided by the underlying system. In this case, the underlying system is the Linux kernel, which provides the necessary features to create and manage containers.
 
 Containers are built using Linux kernel features such as cgroups and namespaces. These features provide isolation and resource management, allowing multiple containers to run on the same system without interfering with each other.
 
@@ -68,5 +64,15 @@ A docker container is isolated, since it is an abstraction over a set of namespa
 - A PID namespace isolates the process ID table, so that processes within a namespace has its own set of PID numbers.
 - A network namespace isolates network interfaces, routing tables, firewall rules, etc. This allows containers to have their own network stack, separate from the host system.
 - A mount namespace isolates the filesystem mount points, so that containers have their own view of the filesystem.
+
+## What is Docker?
+
+Docker is an open-source platform that allows developers to _build_, _package_, and _run_ applications inside containers.
+
+Docker is a higher level ecosystem which has tools to package and distribute containerised applications.
+
+​Docker is an open-source platform that enables developers to build, deploy, and manage applications within containers—lightweight, portable units that package an application along with its dependencies and environment.
+
+By utilizing containerization, Docker ensures that applications run consistently across various computing environments, enhancing portability and reducing conflicts between different system configurations. It leverages OS-level virtualization to deliver software in packages called containers, which are isolated from one another and bundle their own software, libraries, and configuration files. ​
 
 ## Docker Ecosystem

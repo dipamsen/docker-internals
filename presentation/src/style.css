@@ -17,3 +17,7 @@
 strong {
   color: var(--r-highlight-color);
 }
+
+img {
+  display: block;
+}
