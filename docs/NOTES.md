@@ -76,3 +76,16 @@ Docker is a higher level ecosystem which has tools to package and distribute con
 By utilizing containerization, Docker ensures that applications run consistently across various computing environments, enhancing portability and reducing conflicts between different system configurations. It leverages OS-level virtualization to deliver software in packages called containers, which are isolated from one another and bundle their own software, libraries, and configuration files. ​
 
 ## Docker Ecosystem
+
+Two important tools in the Cloud Native ecosystem are `runc` and `containerd`.
+
+- **containerd**: A container runtime that manages the complete container lifecycle - pulling images, managing storage, and running containers.
+
+  - Handles image management (pulling, pushing, and storing images).
+  - Manages container execution, including starting, stopping, and pausing containers.
+  - Provides snapshot management (for storage backends like overlayfs).
+  - Uses runc as the default runtime to create containers.
+
+- **runc**: A lightweight container runtime that creates and runs containers based on the OCI (Open Container Initiative) specifications.
+  - Implements the low-level container management tasks, such as creating namespaces, cgroups, and setting up the container environment.
+  - Executes the container process in the configured environment.
