@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Docker Internals</title>
+    <script type="module" crossorigin src="/assets/index-O6bPwJWl.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BAGXj5sd.css">
   </head>
   <body>
     <div class="reveal">
@@ -42,30 +44,19 @@
             </div>
           </div>
         </section>
-        <!-- <section class="l-title-content">
-          <h2>What is Docker?</h2>
-          <div class="content">
-            <p>
-              Docker is a open-source platform that enables developers to build,
-              deploy, and manage applications in <strong> containers </strong>.
-            </p>
-
-            <p>
-              Docker uses OS-level virtualization to deliver software in
-              containers.
-              This means that each container shares the host OS
-              kernel, but runs in its own isolated user space. 
-            </p>
-          </div>
-        </section> -->
         <section class="l-title-content" data-auto-animate>
           <h2>What is a Container?</h2>
           <div class="content">
-            <img
-              src="images/container-diagram.png"
-              alt="Container Diagram"
-              style="height: 400px"
-            />
+            <figure>
+              <img
+                src="images/container-diagram.png"
+                alt="Container Diagram"
+                style="height: 400px"
+              />
+              <figcaption>
+                Simplified representation of a container architecture.
+              </figcaption>
+            </figure>
           </div>
         </section>
         <section class="l-title-content" data-auto-animate>
@@ -241,12 +232,101 @@ memory.kmem.tcp.limit_in_bytes memory.move_charge_at_immigrate
               cgroups.
             </p>
 
-            <pre><code class="language-bash">
-              </code></pre>
+            <div>
+              <ul>
+                <li>
+                  A mount namespace is created to provide an isolated filesystem
+                  view.
+                </li>
+                <li>
+                  A PID namespace is created to ensure processes inside the
+                  container have their own process tree.
+                </li>
+                <li>
+                  A network namespace is created to provide isolated networking
+                  (separate interfaces, routes, and IPs).
+                </li>
+                <li>
+                  A user namespace is created to allow user ID mapping, enabling
+                  unprivileged container execution.
+                </li>
+                <li>
+                  Cgroups are set up to limit CPU, memory, and I/O resources for
+                  the container.
+                </li>
+                <li>
+                  The application is executed inside the namespace and
+                  cgroup-restricted environment.
+                </li>
+              </ul>
+            </div>
           </div>
+        </section>
+
+        <section
+          class="l-title-content"
+          data-auto-animate
+          data-auto-animate-restart
+        >
+          <h2>The Docker Ecosystem</h2>
+          <div class="content small">
+            <p>
+              Docker is a platform that provides a set of tools and services for
+              building, deploying, and managing containers.
+            </p>
+
+            <div class="fragment">
+              <p>
+                The Docker ecosystem consists of several components, some of
+                them are:
+              </p>
+              <ul>
+                <li>
+                  <strong>Docker daemon</strong>: the background service that
+                  manages containers.
+                </li>
+                <li>
+                  <strong>Docker CLI</strong>: the command-line interface for
+                  interacting with Docker.
+                </li>
+                <li>
+                  <strong>containerd</strong>: A container runtime that manages
+                  the lifecycle of containers (starting, stopping), and image
+                  management (pulling, pushing and storing images).
+                </li>
+                <li>
+                  <strong>runc</strong>: Creates and runs containers based on
+                  the OCI runtime specification, using primitive Linux features.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="l-title-content" data-auto-animate>
+          <h2>The Docker Ecosystem</h2>
+          <div class="content">
+            <figure>
+              <img
+                src="images/docker-ecosystem.png"
+                alt="The Docker Ecosystem"
+              />
+              <figcaption>
+                A simplified representation of different tools and components in
+                the Docker ecosystem.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+        <section>
+          <h1>Thank You</h1>
+          <br />
+
+          <p class="small">
+            Created with <code>&lt;3</code> by
+            <a href="https://github.com/dipamsen">dipamsen</a>
+          </p>
         </section>
       </div>
     </div>
-    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
