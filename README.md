@@ -1,6 +1,8 @@
 # Docker Internals
 
-This repo contains a presentation on Docker internals, including cgroups, namespaces, and the Docker ecosystem. This was prepared as a part of a selection task for @kosskgp (Kharagpur Open Source Society).
+This repo contains a presentation on Docker internals, including cgroups, namespaces, and the Docker ecosystem. This was prepared as a part of a selection task for Kharagpur Open Source Society.
+
+- [Docker Internals Task](https://github.com/kossiitkgp/KOSS-Selection-Tasks/blob/master/Teaching/Miscellaneous/docker_internals.md)
 
 The presentation is a Reveal.js presentation, and can be viewed in a web browser. It is deployed on GitHub Pages, and can be viewed [here](https://dipamsen.github.io/docker-internals/).
 

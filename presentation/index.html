@@ -16,7 +16,7 @@
           />
           <h1>Docker Internals</h1>
         </section>
-        <section class="l-title-content">
+        <section class="l-title-content" data-auto-animate>
           <h2>What is a Container?</h2>
           <div class="content">
             <p>
@@ -59,7 +59,17 @@
           </div>
         </section> -->
         <section class="l-title-content" data-auto-animate>
-          <h2>How do Containers work?</h2>
+          <h2>What is a Container?</h2>
+          <div class="content">
+            <img
+              src="images/container-diagram.png"
+              alt="Container Diagram"
+              style="height: 400px"
+            />
+          </div>
+        </section>
+        <section class="l-title-content" data-auto-animate>
+          <h2>What is a Container?</h2>
           <div class="content">
             <p>
               Containers are an abstraction over Linux kernel features &dash;
@@ -91,17 +101,12 @@
             </div>
           </div>
         </section>
-        <section class="l-title-content" data-auto-animate>
-          <h2>How do Containers work?</h2>
-          <div class="content">
-            <img
-              src="images/container-diagram.png"
-              alt="Container Diagram"
-              style="height: 400px"
-            />
-          </div>
-        </section>
-        <section class="l-title-content">
+
+        <section
+          class="l-title-content"
+          data-auto-animate
+          data-auto-animate-restart
+        >
           <h2>Namespaces</h2>
           <div class="content">
             <p>
@@ -137,7 +142,39 @@
             </div>
           </div>
         </section>
-        <section class="l-title-content">
+        <section class="l-title-content" data-auto-animate>
+          <h2>Namespaces</h2>
+          <div class="content small">
+            <p>
+              Namespaces can be created using the <code>unshare</code> system
+              call. It creates a new namespace and moves the calling process
+              into that namespace.
+            </p>
+
+            <pre><code class="language-bash">> id -u # Check current user ID
+1000
+> unshare --user --map-root-user # Create a new User namespace
+> id -u 
+0
+</code></pre>
+            <p>
+              In the above example, <code>unshare</code> creates a new User
+              namespace, mapping the root user in the new namespace to the
+              current user in the host namespace.
+            </p>
+            <p>
+              So, the current user has different user IDs in the host and the
+              new namespace. In the host namespace, the user ID is 1000, while
+              in the new namespace, the user ID is 0 (root). The user has root
+              privileges in the new namespace, but not outside of it.
+            </p>
+          </div>
+        </section>
+        <section
+          class="l-title-content"
+          data-auto-animate
+          data-auto-animate-restart
+        >
           <h2>Control Groups (cgroups)</h2>
           <div class="content">
             <p>
@@ -147,10 +184,62 @@
             </p>
             <div class="fragment">
               <p>
-                Cgroups can be used to limit CPU, memory, disk I/O, and network
-                bandwidth for a group of processes.
+                Resource controllers are used to track and limit the resources
+                available to the cgroup. Some common resource controllers are:
               </p>
+              <ul>
+                <li><strong>cpu</strong>: CPU usage</li>
+                <li><strong>memory</strong>: memory usage</li>
+                <li><strong>blkio</strong>: disk read/write</li>
+                <li><strong>pid</strong>: number of processes</li>
+                <li><strong>devices</strong>: access to hardware</li>
+              </ul>
             </div>
+          </div>
+        </section>
+        <section class="l-title-content" data-auto-animate>
+          <h2>Control Groups (cgroups)</h2>
+          <div class="content small">
+            <p>
+              Cgroups are managed through a virtual filesystem, usually mounted
+              at
+              <code>/sys/fs/cgroup</code>. Each cgroup is represented as a
+              directory in this filesystem, and each cgroup has files that can
+              be used to control the resources available to that cgroup.
+            </p>
+
+            <pre><code class="language-bash">> mkdir /sys/fs/cgroup/memory/mycgroup # Create a new memory cgroup
+> ls /sys/fs/cgroup/memory/mycgroup
+cgroup.clone_children          memory.kmem.tcp.max_usage_in_bytes memory.oom_control
+cgroup.event_control           memory.kmem.tcp.usage_in_bytes     memory.pressure_level
+cgroup.procs                   memory.kmem.usage_in_bytes         memory.soft_limit_in_bytes
+memory.failcnt                 memory.limit_in_bytes              memory.stat
+memory.force_empty             memory.max_usage_in_bytes          memory.swappiness
+memory.kmem.failcnt            memory.memsw.failcnt               memory.usage_in_bytes
+memory.kmem.limit_in_bytes     memory.memsw.limit_in_bytes        memory.use_hierarchy
+memory.kmem.max_usage_in_bytes memory.memsw.max_usage_in_bytes    notify_on_release
+memory.kmem.tcp.failcnt        memory.memsw.usage_in_bytes        tasks
+memory.kmem.tcp.limit_in_bytes memory.move_charge_at_immigrate
+> echo 1000000 > /sys/fs/cgroup/memory/mycgroup/memory.limit_in_bytes # Set memory limit
+> echo $$ > /sys/fs/cgroup/memory/mycgroup/cgroup.procs # Add current process to the cgroup
+> cat /sys/fs/cgroup/memory/mycgroup/memory.limit_in_bytes
+999424
+</code></pre>
+          </div>
+        </section>
+        <section
+          class="l-title-content"
+          data-auto-animate-restart
+          data-auto-animate
+        >
+          <h2>Building a container</h2>
+          <div class="content small">
+            <p>
+              Cgroups and namespaces can be used together to create a container.
+              The container is created by creating a new set of namespaces and
+              cgroups, and running the process in the new namespaces and
+              cgroups.
+            </p>
           </div>
         </section>
       </div>
