@@ -4,6 +4,8 @@ This repo contains a presentation on Docker internals, including cgroups, namesp
 
 - [Docker Internals Task](https://github.com/kossiitkgp/KOSS-Selection-Tasks/blob/master/Teaching/Miscellaneous/docker_internals.md)
 
+`docs` contains notes/information on the topic, gathered from various sources.
+
 The presentation is a Reveal.js presentation, and can be viewed in a web browser. It is deployed on GitHub Pages, and can be viewed [here](https://dipamsen.github.io/docker-internals/).
 
 To run the presentation locally, you can clone the repository, and run the following commands:
